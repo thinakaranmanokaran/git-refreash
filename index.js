@@ -27,10 +27,11 @@ const GitHubRefresher = async (URL) => {
       });
     });
 
-    for (let i = 0; i < 10000; i++) {
+    let i = 0; // Initialize a counter
+    while (true) { // Run indefinitely
       await page.goto(URL, { waitUntil: 'networkidle2', timeout: 60000 });
-      console.log(`Page refreshed ${i + 1} times`);
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log(`Page refreshed ${++i} times`);
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 1 second
     }
   } catch (error) {
     console.error("Error occurred:", error);
